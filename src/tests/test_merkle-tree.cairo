@@ -87,9 +87,39 @@ func test_three{
 end
 
 
+@external
+func test_four{
+    syscall_ptr : felt*,
+    pedersen_ptr : HashBuiltin*,
+    range_check_ptr,
+    ecdsa_ptr : SignatureBuiltin*,
+}():
+    alloc_locals
+    let (local proofs: felt*) = alloc()
+    assert proofs[0] = 444
+    assert proofs[1] = 1145740579986834829318467109289126196422112283458566209179034823478827791393
+
+    let proofs_idx = 0
+    let proofs_len = 2
+    let leaf = 333
+    let root = 3274240073858950339877966369107462560525003124241902355403880717440512776591
+    let index = 2
+
+    MerkleTree.verify_proof(
+        proofs,
+        proofs_idx, 
+        proofs_len,
+        root, 
+        leaf, 
+        index
+    )
+    return ()
+end
+
+
 # An example of using keccak with the merkle tree
 @external
-func test_four():
+func test_five():
     alloc_locals
     let (local data: felt*) = alloc()
     assert data[0] = 111
