@@ -5,7 +5,7 @@ from starkware.cairo.common.cairo_builtins import (
     SignatureBuiltin,
 )
 from starkware.cairo.common.hash import hash2
-
+from starkware.cairo.common.alloc import alloc
 from MerkleTreeUtils import MerkleTree
 
 @external
@@ -16,12 +16,12 @@ func test_one{
         ecdsa_ptr : SignatureBuiltin*
     }():
     alloc_locals
-    let hash_one = 0xe2b3ef059d063574126341c156c6483fa5f522b261924088ad376ae8cfafc7a4
-    let hash_two = 0x6527eb1b3583a25f669d6026e7e230e7ac0c7c56ab0af8841dad1acfb972b0e4
+    let hash_one = 1145740579986834829318467109289126196422112283458566209179034823478827791393
+    let hash_two = 3128043887554350334570628527917084743624356612532641151385005685036883923477
 
-    # if index%2 == 0:
     let (hash_three) = MerkleTree.getHash(hash_one,hash_two)
-    assert hash_three = 317361488391619876795111473446934822816165198340275047808265191786403800248
+    # Calculated previously
+    assert hash_three = 3274240073858950339877966369107462560525003124241902355403880717440512776591
 
     return ()
 end
@@ -35,6 +35,62 @@ func test_two{
     ecdsa_ptr : SignatureBuiltin*,
 }():
     alloc_locals
-    # MerkleTree.verify_proof()
+    let (local proofs: felt*) = alloc()
+    assert proofs[0] = 222
+    assert proofs[1] = 3128043887554350334570628527917084743624356612532641151385005685036883923477
+
+    let proofs_idx = 0
+    let proofs_len = 2
+    let leaf = 111
+     %{expect_revert()%}
+    let root = 6969
+    let index = 0
+
+    MerkleTree.verify_proof(
+        proofs,
+        proofs_idx, 
+        proofs_len,
+        root, 
+        leaf, 
+        index
+    )
     return ()
 end
+
+@external
+func test_three{
+    syscall_ptr : felt*,
+    pedersen_ptr : HashBuiltin*,
+    range_check_ptr,
+    ecdsa_ptr : SignatureBuiltin*,
+}():
+    alloc_locals
+    let (local proofs: felt*) = alloc()
+    assert proofs[0] = 222
+    assert proofs[1] = 3128043887554350334570628527917084743624356612532641151385005685036883923477
+
+    let proofs_idx = 0
+    let proofs_len = 2
+    let leaf = 111
+    let root = 3274240073858950339877966369107462560525003124241902355403880717440512776591
+    let index = 0
+
+    MerkleTree.verify_proof(
+        proofs,
+        proofs_idx, 
+        proofs_len,
+        root, 
+        leaf, 
+        index
+    )
+    return ()
+end
+
+# verify_proof_v2(
+#     proofs, 
+#     0, 
+#     len(proofs), 
+#     root, 
+#     leaf, 
+#     index
+# )

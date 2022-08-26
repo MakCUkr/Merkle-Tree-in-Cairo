@@ -20,17 +20,18 @@ def verify_proof(proofs, root, leaf, index):
 
 verify_proof(proofs, root, leaf, index)
 
-def verify_proof_v2(proofs, proofs_idx, root, leaf, index):
+def verify_proof_v2(proofs, proofs_idx, proofs_len, root, leaf, index):
   hash = leaf;
-  if(proofs_idx < len(proofs)):
-    proofElement = proofs[proofs_idx]
-    if (index % 2 == 0):
-        hash = getHash(hash, proofElement)
-    else:
-        hash = getHash(proofElement, hash)
-    index = int(index / 2)
-    verify_proof_v2(proofs, proofs_idx+1, root, hash, index)
-  else:
+  if(proofs_idx >= proofs_len):
     print(root==leaf)
+    return
+  
+  proofElement = proofs[proofs_idx]
+  if (index % 2 == 0):
+      hash = getHash(hash, proofElement)
+  else:
+      hash = getHash(proofElement, hash)
+  index = int(index / 2)
+  verify_proof_v2(proofs, proofs_idx+1, proofs_len, root, hash, index)
 
-verify_proof_v2(proofs, 0, root, leaf, index)
+verify_proof_v2(proofs, 0, len(proofs), root, leaf, index)
