@@ -4,7 +4,7 @@ from starkware.cairo.common.cairo_builtins import (
     HashBuiltin,
     SignatureBuiltin,
 )
-from starkware.cairo.common.hash import hash2
+from starkware.cairo.common.keccak import unsafe_keccak
 from starkware.cairo.common.alloc import alloc
 from MerkleTreeUtils import MerkleTree
 
@@ -86,11 +86,20 @@ func test_three{
     return ()
 end
 
-# verify_proof_v2(
-#     proofs, 
-#     0, 
-#     len(proofs), 
-#     root, 
-#     leaf, 
-#     index
-# )
+
+# An example of using keccak with the merkle tree
+@external
+func test_four():
+    alloc_locals
+    let (local data: felt*) = alloc()
+    assert data[0] = 111
+    assert data[1] = 222
+    let data_len = 2
+
+    let (low: felt, high: felt) = unsafe_keccak(data, data_len)
+    # Calculated previously
+    assert low = 91007330149233898612256674446167786685
+    assert high = 172120300650343214599491932905192275101
+
+    return ()
+end
