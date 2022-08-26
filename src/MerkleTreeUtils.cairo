@@ -7,8 +7,6 @@ from starkware.cairo.common.cairo_builtins import (
 from starkware.cairo.common.hash import hash2
 
 namespace MerkleTree:
-    const SECONDS_PER_YEAR = 365 * 24 * 3600
-
     func getHash{
         syscall_ptr : felt*,
         pedersen_ptr : HashBuiltin*,
@@ -40,19 +38,3 @@ namespace MerkleTree:
         return ()
     end
 end
-
-
-# def verify_proof_v2(proofs, proofs_idx, proofs_len, root, leaf, index):
-#   hash = leaf;
-#   if(proofs_idx >= proofs_len):
-#     print(root==leaf)
-#     return
-  
-#   proofElement = proofs[proofs_idx]
-#   if (index % 2 == 0):
-#       hash = getHash(hash, proofElement)
-#   else:
-#       hash = getHash(proofElement, hash)
-#   index = int(index / 2)
-#   verify_proof_v2(proofs, proofs_idx+1, proofs_len, root, hash, index)
-
