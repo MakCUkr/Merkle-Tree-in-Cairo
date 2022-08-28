@@ -6,7 +6,7 @@ from starkware.cairo.common.cairo_builtins import (
 )
 from starkware.cairo.common.keccak import unsafe_keccak
 from starkware.cairo.common.alloc import alloc
-from MerkleTreeUtils import MerkleTree
+from src.MerkleTreeUtils import MerkleTree
 
 @external
 func test_one{
