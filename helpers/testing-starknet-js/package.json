@@ -1,0 +1,12 @@
+{
+  "name": "testing-starknet",
+  "version": "1.0.0",
+  "type":"module",
+  "description": "short files that are helpful for testing/using the starknet.js library",
+  "main": "view-function.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
