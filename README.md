@@ -1,3 +1,33 @@
 # Merkle Tree implementation in Cairo.
 
 The contract is based on the Solidity example of a Merkle Tree verifier implementation [here](https://solidity-by-example.org/app/merkle-tree/)
+
+### Example tree
+
+
+##### KECCAK-256
+1. alice->bob: 0xe2b3ef059d063574126341c156c6483fa5f522b261924088ad376ae8cfafc7a4  -- a
+2. bob->charles: 0x6527eb1b3583a25f669d6026e7e230e7ac0c7c56ab0af8841dad1acfb972b0e4 -- b
+3. charles->darwin: 0xae8483217d3d6949a7d334576eaa979e67da40315103ef9ce01d6212daf17864 -- c
+4. darwin->ellie: 0x65c0e9d75792b5359910504edead1011adb077188ee71d5b8cac8eed0ff606cb -- d
+
+
+1. (alice->charles): 0xcc476c411337bb62c6c7384046e0c656bc3f9b515948a48f9ca8eb3343e0ad7e -- ab
+2. (charles->ellie): 0x1fcb494e830c1092ef0d31531dde85ac03147232139e75b8203d6501fb5ec5be -- cd
+
+
+1. (alice->ellie): 0xee071c3368e51586ba23731cc0fda8f0b4aa196f2a6c349e0846e54e4292c208 -- abcd
+
+
+##### Pedersen hash
+
+1. 111 - a
+2. 222 - b
+3. 333 - c
+4. 444 - d
+
+
+5. 1145740579986834829318467109289126196422112283458566209179034823478827791393 -- ab
+6. 3128043887554350334570628527917084743624356612532641151385005685036883923477 -- cd
+
+7. 3274240073858950339877966369107462560525003124241902355403880717440512776591 -- abcd

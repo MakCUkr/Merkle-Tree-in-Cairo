@@ -1,0 +1,25 @@
+[
+    {
+        "inputs": [],
+        "name": "root",
+        "outputs": [
+            {
+                "name": "root",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "root",
+                "type": "felt"
+            }
+        ],
+        "name": "set_merkle_root",
+        "outputs": [],
+        "type": "function"
+    }
+]

@@ -1,8 +1,10 @@
+import AddingRootComponent from "./AddingRootComponent"
+
 
 function App() {
   return (
     <div>
-      Hello World
+      <AddingRootComponent/>
     </div>
   );
 }
