@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import {merkleContract} from "./constants"
 
 function AddingRootComponent() {
   const [newHashVal, setNewHashVal] = useState(0);
@@ -15,16 +16,7 @@ function AddingRootComponent() {
       <button type="button" 
       className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       onClick={() => {
-        // const starknet = connect();
-        // if (!starknet?.isConnected) {
-        //   throw Error("starknet wallet not connected")
-        // }
-        // const merkleContract = new Contract(
-        //   MERKLE_CONTRACT_ABI,
-        //   MERKLE_CONTRACT_ADDRESS,
-        //   starknet.account,
-        // )
-        // return merkleContract.set_merkle_root(newHashVal)
+        // let account = new Account(
       }}
       >Set</button>
     </div>
