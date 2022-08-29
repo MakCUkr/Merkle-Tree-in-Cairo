@@ -35,6 +35,7 @@ const compiledOZAccount = json.parse(
 const privateKey = stark.randomAddress();
 
 const starkKeyPair = ec.genKeyPair(privateKey);
+console.log("SIDHU",  starkKeyPair);
 const starkKeyPub = ec.getStarkKey(starkKeyPair);
 
 // // Deploy the Account contract and wait for it to be verified on StarkNet.
