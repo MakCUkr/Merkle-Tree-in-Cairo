@@ -1,5 +1,5 @@
 import {
-  // Contract,
+  Contract,
   defaultProvider,
   Provider,
 } from "starknet";
@@ -34,5 +34,6 @@ const CAIRO_PROVIDER = process.env.STARKNET_PROVIDER_BASE_URL === undefined ?
   defaultProvider :
   new Provider({ baseUrl: process.env.STARKNET_PROVIDER_BASE_URL });
 
+const merkleContract = new Contract(MERKLE_CONTRACT_ABI, MERKLE_CONTRACT_ADDRESS, CAIRO_PROVIDER);
 
-// export { MERKLE_CONTRACT_ADDRESS, MERKLE_CONTRACT_ABI, CAIRO_PROVIDER }
+export { MERKLE_CONTRACT_ADDRESS, MERKLE_CONTRACT_ABI, CAIRO_PROVIDER, merkleContract }
